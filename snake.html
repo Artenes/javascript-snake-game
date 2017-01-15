@@ -1,0 +1,36 @@
+<!--
+
+	Made by Artenes Nogueira
+	artenes.github.io
+	Based on the implementation made by Jamie Nichols
+	available at: https://www.youtube.com/watch?v=xRUBaiJvhyo
+
+-->
+<html>
+
+<head>
+
+	<title>Snake</title>
+
+</head>
+
+<body>
+
+	<h2>Start the game by hiting Enter</h2>
+	<h2>Score: <span id="score"></span> </h2>
+	<h2>Max score: <span id="max_score"></span> </h2>
+	<h2>Deaths: <span id="deaths"></span> </h2>
+	<span>Move with the arrow keys | pause or continue with Enter</span>
+	<div id="stage" style="position:relative"></div>
+
+</body>
+
+	<script src="snake.js"></script>
+
+	<script type="text/javascript">
+
+		var game = new Game(20, 10, "stage", "score", "deaths", "max_score");
+
+	</script>
+
+</html>
