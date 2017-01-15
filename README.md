@@ -1,6 +1,6 @@
-# Simple Java Script snake game
+# Simple Javascript snake game
 
-![Java Script Snake Game](images/snake.gif)
+![Javascript Snake Game](images/snake.gif)
 
 Just download or clone the repository. Open ``snake.html`` in your browser and play!
 
