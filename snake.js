@@ -11,7 +11,7 @@
 *
 *	A part of the snake.
 *	Will only have a x and y coordinates.
-*	
+*
 *------------------------------------------------------------------*/
 class SnakePart {
 
@@ -27,7 +27,7 @@ class SnakePart {
 /*-------------------------------------------------------------------
 *
 *	The snake itself.
-*	
+*
 *------------------------------------------------------------------*/
 class Snake {
 
@@ -127,51 +127,52 @@ class Snake {
 
 	//Update the snake in the canvas.
 	update() {
-
 		this.x += this.xSpeed;
 		this.y += this.ySpeed;
 
-		/*
-		These next four checks are necessary
-		to make sure that the snake don't go out of bounds. 
+		/**
+		Snake would not death when collapsed bounds of canvas.
+		Coordinates are reversed when snake will collapse the bound.
+		Example; if this.x = -1 (snake is collapsed to left bound of canvas)
+		this.x will be 19(this.game.width - 1) to keep continue game at right bound of canvas
 		*/
-		if (this.x < 0)
-			this.x = 0;
-
-		if (this.y < 0)
-			this.y = 0;
-
 		if (this.x > this.game.width - 1)
-			this.x = this.game.width - 1;
-
+			this.x = 0;
+		if (this.x < 0) {
+			this.x = this.game.width -1
+		}
 		if (this.y > this.game.height - 1)
+			this.y = 0;
+		if (this.y < 0) {
 			this.y = this.game.height - 1;
+		}
 
 		//Renders each part in the canvas starting by the last part.
+		console.log(this.parts.length)
 		for (var index = this.parts.length - 1; index >= 0; index--) {
 
 			var part = this.parts[index];
 
-			if (index != 0) {
+			if (index != 0)
+			{
 
 				part.x = this.parts[index - 1].x;
 				part.y = this.parts[index - 1].y;
 
 				//If the heads touches any part of the body it will die.
 				if (this.x == part.x && this.y == part.y) {
-
 					this.die();
-
 				}
 
-			} else {
+			}
+			else {
 
 				part.x = this.x;
 				part.y = this.y;
 
 			}
 
-			this.game.grid.fillTile(part.x, part.y, "#9eff66");
+			this.game.grid.fillTile(part.x, part.y, "#111410");
 
 		}
 
@@ -192,7 +193,7 @@ class Snake {
 /*-------------------------------------------------------------------
 *
 *	The food that the snake will eat.
-*	
+*
 *------------------------------------------------------------------*/
 class Food {
 
@@ -214,7 +215,7 @@ class Food {
 	//Render the food in the grid.
 	update() {
 
-		this.game.grid.fillTile(this.x, this.y, "#ff2828");
+		this.game.grid.fillTile(this.x, this.y, "#111410");
 
 	}
 
@@ -223,7 +224,7 @@ class Food {
 /*-------------------------------------------------------------------
 *
 *	The game's grid. Can be of any size you want.
-*	
+*
 *------------------------------------------------------------------*/
 class RenderGrid {
 
@@ -300,7 +301,7 @@ class RenderGrid {
 			for (var y = 0; y < this.game.height; y++) {
 
 				var tile = this.grid[x][y];
-				var newBackgroundColor = tile.isFilled ? tile.color : "#4c2a2a";
+				var newBackgroundColor = tile.isFilled ? tile.color : "#9AC805";
 				tile.div.style.background = newBackgroundColor;
 
 				/*
@@ -321,7 +322,7 @@ class RenderGrid {
 /*-------------------------------------------------------------------
 *
 *	The game.
-*	
+*
 *------------------------------------------------------------------*/
 class Game {
 
@@ -363,7 +364,7 @@ class Game {
 		this.spanScore.innerHTML = this.score;
 		this.spanDeaths.innerHTML = this.deaths;
 		this.spanMaxScore.innerHTML = this.maxScore;
-		
+
 		if (! this.snake.isAlive) {
 
 			this.maxScore = this.score > this.maxScore ? this.score : this.maxScore;
@@ -388,7 +389,6 @@ class Game {
 		}
 
 		this.grid.update();
-
 	}
 
 }
